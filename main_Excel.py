@@ -26,7 +26,13 @@ for res in dados_clean:
         continue  # Ignorar nomes em branco
     if len(data_build[0].strip()) != 12:
         continue  # Ignorar CPFs em formatos errados
-    cpf = data_build[0]
+
+    cpf_raw = data_build[0].strip()
+    if cpf_raw.endswith('.0'):
+        cpf = cpf_raw[:-2]
+    else:
+        cpf = cpf_raw
     nome = data_build[1]
+
     if cpf.strip():
         addtb(cpf, nome)
